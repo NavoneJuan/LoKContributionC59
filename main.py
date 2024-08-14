@@ -3,7 +3,7 @@ import datetime
 import requests
 import json
 import threading
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -100,40 +100,39 @@ def get_lands_data(urls):
     return responses
 
 
-def get_land_contribution(data, kingdom_name):
+def get_land_contribution(data, continent_number):
     for kingdom in data:
-        if kingdom['name'] == kingdom_name:
+        if kingdom['continent'] == continent_number:
             return kingdom.get('total', 0)
     return 0
 
 
-def process_lands_data(responses, urls, kingdom_name):
+def process_lands_data(responses, urls, continent_number=59):
     lands_contributions = {}
     owner_contributions = {}
+    kingdom_contributions = {}
     for data in responses:
-        print(data)
         if data.get('result', False):
-            contribution = get_land_contribution(data.get('contribution', []), kingdom_name)
+            contribution = get_land_contribution(data.get('contribution', []), continent_number)
             wallet = data.get('owner', '0x0000000000')
-            land = lands_contributions.get(data.get('land_id'), {
-                'contribution': 0,
-                'land': data.get('land_id', 0),
-                'owner': wallet,
-                'color': wallet[:8].replace('0x', '#'),
-            })
-            land['contribution'] += contribution
-            if not land.get('position'):
-                for url in urls:
-                    if land['land'] == url.get('id', 0):
-                        land['position'] = url.get('position', )
-                        break
-            lands_contributions[data.get('land_id')] = land
             owner_contributions[wallet] = owner_contributions.get(wallet, 0) + contribution
+            for kingdom in data.get('contribution', []):
+                if isinstance(kingdom, dict) and kingdom.get('continent') == continent_number:
+                    kingdom_contribution = kingdom_contributions.get(kingdom.get('kingdomId'), {
+                        'kingdomId': kingdom.get('kingdomId'),
+                        'total': 0,
+                        'name': kingdom.get('name'),
+                        'continent': kingdom.get('continent')})
+                    kingdom_contribution['total'] += kingdom['total']
+                    kingdom_contributions[kingdom.get('kingdomId')] = kingdom_contribution
+
         else:
             land = lands_contributions.get(data.get('land_id'), {
                 'contribution': 0,
                 'land': data.get('land_id', 0),
-                'owner': 'No Owner' if data.get('err', {}).get('code', '') == 'no_land_owner' else data.get('error', {}).get('code', ''),
+                'owner': 'No Owner' if data.get('err', {}).get('code', '') == 'no_land_owner' else data.get('error',
+                                                                                                            {}).get(
+                    'code', ''),
                 'color': '#bd6c1e' if data.get('err', {}).get('code', '') == 'no_land_owner' else '#FFFFFF00',
             })
             if not land.get('position'):
@@ -142,8 +141,13 @@ def process_lands_data(responses, urls, kingdom_name):
                         land['position'] = url.get('position', )
                         break
             lands_contributions[data.get('land_id')] = land
-    return {'lands': [land for land in lands_contributions.values()],
-            'owners': [{'wallet': key, 'contribution': value} for key, value in owner_contributions.items()] }
+    result = {'lands': [land for land in lands_contributions.values()],
+              'contributions': [kingdom
+                                for kingdom in
+                                sorted(kingdom_contributions.values(), key=lambda i: i.get('total'), reverse=True)],
+              'owners': [{'wallet': key, 'contribution': value} for key, value in owner_contributions.items()]
+              }
+    return result
 
 
 flask_app = Flask(__name__)
@@ -151,20 +155,24 @@ flask_app = Flask(__name__)
 
 @flask_app.route('/get_contribution', methods=['GET'])
 def get_contribution():
-    kingdom = request.args.get('kingdom_name')
     land = request.args.get('land_id')
     from_date = request.args.get('from')
     to_date = request.args.get('to')
     adjacent_lands = True if request.args.get('adjacent_lands') == 'true' else False
     urls = make_urls(land, from_date, to_date, adjacent_lands)
     responses = get_lands_data(urls)
-    response = process_lands_data(responses, urls, kingdom)
+    response = process_lands_data(responses, urls)
     return jsonify(response), 200
 
 
 @flask_app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+
+@flask_app.route('/assets/<path:path>', methods=['GET'])
+def send_assets(path):
+    return send_from_directory('statics', path)
 
 
 # Press the green button in the gutter to run the script.

@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
-            background-image: url("https://www.dropbox.com/scl/fi/8enbqi0sidipy9aenyy51/field.png?rlkey=nnlpit9gnyribniv5mnr775r1&raw=1");
+            background-image: url("/assets/img/field.png");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -38,7 +38,7 @@
         <div class="row mb-5">
             <div class="d-flex">
                 <a href="https://www.leagueofkingdoms.com">
-                    <img src="https://www.leagueofkingdoms.com/img/logo.png" width="20%" alt="League of Kingdoms Logo">
+                    <img src="/assets/img/logo.png" width="20%" alt="League of Kingdoms Logo">
                 </a>
             </div>
         </div>
@@ -50,10 +50,6 @@
                     </div>
                     <div class="card-body">
                     <div class="row">
-                        <div class="col-auto form-group">
-                            <label for="kingdom_name" >Nombre del Reino <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="kingdom_name" placeholder="Nombre del Reino" name="kingdom_name">
-                        </div>
                         <div class="col-auto form-group">
                             <label for="land_id" >ID de la Tierra <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="land_id" placeholder="ID de la Tierra" name="land_id">
@@ -68,7 +64,7 @@
                         </div>
                         <div class="col-12 mt-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="adjacent_lands" name="adjacent_lands" checked>
+                                <input class="form-check-input" type="checkbox" value="" id="adjacent_lands" name="adjacent_lands" >
                                 <label class="form-check-label" for="adjacent_lands">
                                     Agregar Datos de tierras adyacentes
                                 </label>
@@ -88,113 +84,13 @@
         </div>
         <div class="row mt-5">
             <h2></h2>
-            <div id="lands" class="contanier-fluid col-md-10 offset-1 d-none">
-                <div class="row d-flex align-items-stretch">
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="1">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="2">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="3">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex align-items-stretch">
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="4">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="5">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="6">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex align-items-stretch">
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="7">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="8">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 mt-2 mb-2">
-                        <div class="card h-100" id="9">
-                            <div class="card-body d-flex">
-                                <img src="https://www.dropbox.com/scl/fi/8q7tj06agosg9t9yynhtk/land.png?rlkey=q11i0e0a63c2x08zwl6o0cb3t&&raw=1" class="mr-3" alt="LoK land Logo">
-                                <div>
-                                    <h5 class="card-title"><strong class="card-title">title</strong></h5>
-                                    <p class="card-text"><span>444444</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="contributors" class="row mt-3">
+                <div class="table-responsive">
                 </div>
             </div>
+        </div>
+        <div class="row mt-5">
+            <h2></h2>
             <div id="owners" class="row mt-3">
                 <div class="table-responsive">
                 </div>
@@ -203,7 +99,7 @@
     </div>
     <footer class="footer mt-auto py-2 fixed-bottom bg-t-50">
         <div class="container text-dark text-center">
-            <span class="text-dark font-weight-bold">Made with &#129392;. Fork me or/and ⭐ me on &#128073; <a href="https://github.com/AmbyW/LoKContribution" class="text-danger">GitHub</a> </span>
+            <span class="text-dark font-weight-bold">Made with &#129392;. Fork me or/and ⭐ me on &#128073; <a href="https://github.com/ReynaldoCC/LoKContributionC59" class="text-danger">GitHub</a> </span>
         </div>
     </footer>
     <script type="text/javascript">
@@ -237,7 +133,7 @@
                     })
                 }
             }
-            const full_table = function (data) {
+            const full_table_owner = function (data) {
 
                 let html_table = '{% raw %}' +
                     '                   <table class="table table-success table-hover table-striped table-bordered">\n' +
@@ -261,6 +157,33 @@
                 let html_rendered = tmpl.render(data);
                 $("#owners").removeClass("d-none");
                 $("#owners .table-responsive").html(html_rendered);
+            }
+            const full_table_contributor = function (data) {
+
+                let html_table = '{% raw %}' +
+                    '                   <table class="table table-success table-hover table-striped table-bordered">\n' +
+                    '                        <thead>\n' +
+                    '                            <tr>\n' +
+                    '                                <th scope="col text-center">Kingdom Name</th>\n' +
+                    '                                <th scope="col text-center">Kingdom ID</th>\n' +
+                    '                                <th scope="col text-center">Contribution</th>\n' +
+                    '                            </tr>\n' +
+                    '                        </thead>\n' +
+                    '                        <tbody>\n' +
+                    '                            {{for contributions}}' +
+                    '                            <tr>\n' +
+                    '                                <td>{{>name}}</td>\n' +
+                    '                                <td>{{>kingdomId}} dvp</td>\n' +
+                    '                                <td>{{>total}} dvp</td>\n' +
+                    '                            </tr>\n' +
+                    '                            {{/for}}' +
+                    '                        </tbody>\n' +
+                    '                    </table>' +
+                    '{% endraw %}';
+                let tmpl = $.templates(html_table);
+                let html_rendered = tmpl.render(data);
+                $("#contributors").removeClass("d-none");
+                $("#contributors .table-responsive").html(html_rendered);
             }
 
             const submit_button = $("#form_submit");
@@ -286,7 +209,7 @@
             $.validator.addMethod("greaterThan",
                 function(value, element, params) {
 
-                    if (!/Invalid|NaN/.test(new Date(value))) {
+                    if (!/Invalid|NaN/.test(new Date(value)) && $(params).val()) {
                         return new Date(value) >= new Date($(params).val());
                     }
 
@@ -296,19 +219,31 @@
             $.validator.addMethod("lowerThan",
                 function(value, element, params) {
 
-                    if (!/Invalid|NaN/.test(new Date(value))) {
+                    if (!/Invalid|NaN/.test(new Date(value)) && $(params).val()) {
                         return new Date(value) <= new Date($(params).val());
                     }
 
                     return isNaN(value) && isNaN($(params).val())
                         || (Number(value) <= Number($(params).val()));
             },'Must be greater than from date');
+            $.validator.addMethod("DatesDifference31",
+            function (value, element, params) {
+
+                    if (!/Invalid|NaN/.test(new Date(value)) && $(params).val()) {
+                        let date1 = new Date(value);
+                        let date2 = new Date($(params).val());
+                        const difference = Math.abs(date1 - date2);
+                        const daysDifference = Math.floor(difference / (1000 * 60 * 60 * 24));
+                        return  daysDifference <= 31;
+                    }
+
+                    return isNaN(value) && isNaN($(params).val())
+                        || (Number(value) <= Number($(params).val()));
+
+            }, 'Dates difference should be lower or equal to 31 days');
             form.validate({
                 errorClass: 'text-danger',
                 rules: {
-                    'kingdom_name': {
-                        required: true,
-                    },
                     'land_id': {
                         required: true,
                         digits: true,
@@ -320,9 +255,11 @@
                     'from': {
                         required: true,
                         lowerThan: '#to',
+                        DatesDifference31: '#to',
                     },
                     'to': {
                         greaterThan: '#from',
+                        DatesDifference31: '#from',
                         required: true,
                     },
                 },
@@ -347,8 +284,9 @@
                     success: function (response) {
                         console.log(response)
                         disable_spinner();
-                        paint_blocks(response.lands);
-                        full_table(response);
+                        /*paint_blocks(response.lands);*/
+                        full_table_owner(response);
+                        full_table_contributor(response);
                     },
                     error: function (errors) {
                         console.log(errors);
