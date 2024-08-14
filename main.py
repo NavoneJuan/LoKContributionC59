@@ -153,6 +153,7 @@ def process_lands_data(responses, urls, continent_number=59):
 flask_app = Flask(__name__)
 
 
+@flask_app.route('/C59LoK/templates/get_contribution', methods=['GET'])
 @flask_app.route('/get_contribution', methods=['GET'])
 def get_contribution():
     land = request.args.get('land_id')
@@ -165,11 +166,13 @@ def get_contribution():
     return jsonify(response), 200
 
 
+@flask_app.route('/C59LoK/templates/', methods=['GET'])
 @flask_app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 
+@flask_app.route('/C59LoK/templates/assets/<path:path>', methods=['GET'])
 @flask_app.route('/assets/<path:path>', methods=['GET'])
 def send_assets(path):
     return send_from_directory('statics', path)

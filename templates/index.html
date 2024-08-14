@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
-            background-image: url("/assets/img/field.png");
+            background-image: url("/C59LoK/templates/assets/img/field.png");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -38,13 +38,13 @@
         <div class="row mb-5">
             <div class="d-flex">
                 <a href="https://www.leagueofkingdoms.com">
-                    <img src="/assets/img/logo.png" width="20%" alt="League of Kingdoms Logo">
+                    <img src="/C59LoK/templates/assets/img/logo.png" width="20%" alt="League of Kingdoms Logo" id="lok_logo">
                 </a>
             </div>
         </div>
         <div class="col-md-10 offset-1">
             <div class="card mt-4">
-                <form action="/get_contribution" method="get" id="getcontribution-form">
+                <form action="get_contribution" method="get" id="getcontribution-form">
                     <div class="card-header text-center">
                         Datos para buscar la contribución
                     </div>
@@ -104,6 +104,7 @@
     </footer>
     <script type="text/javascript">
         $(document).ready(function() {
+            const urlActual = window.location.href;
             const paint_blocks = function (data) {
                 if (data) {
                     $("#lands").removeClass("d-none");
@@ -269,6 +270,9 @@
                 if (!form.valid()) {
                     return;
                 }
+                const basePath = urlActual.replace(/\/$/, '')
+                const contributionPath = '/get_contribution';
+                const requestPath = `${basePath}${contributionPath}`
                 let data = [];
                 form.find('input,select').each(function() {
                     if (this.type === 'checkbox')
@@ -279,7 +283,7 @@
                 enable_spinner();
                 $.ajax({
                     type: "GET",
-                    url: '/get_contribution',
+                    url: requestPath,
                     data: data,
                     success: function (response) {
                         console.log(response)
